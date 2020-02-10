@@ -1,0 +1,13 @@
+session_config:
+  session_expiration_time: 60.0
+  carry_over_slots_to_new_session: true
+intents:
+- russian_greet
+- chuck_fact
+- affirm
+- inform
+- deny
+- stop
+actions:
+- action_greeter
+- action_chuck_fact
