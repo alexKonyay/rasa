@@ -38,7 +38,7 @@ class BeerService():
             "isOrganic": 'Y' if is_organic else 'N',
             "hasLabels": 'Y' if has_label else 'N'
         }
-        response = requests.get(url=url,params=params)
+        response = requests.get(url=url,params=params).json()
         result_beer = Beer(response['data']['name'], response['data']['style']['description'])
 
         return result_beer
