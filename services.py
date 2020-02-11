@@ -15,12 +15,15 @@ with open('config.yml') as config_file:
 
 
 class Beer():
+    """Beer"""
+
     def __init__(self, name, desc):
         self.name = name
         self.desc = desc
         
 
 class BeerService():
+    """Brewerydb service"""
     @staticmethod
     def style_by_id(id):
         return style_db.get(id)
@@ -45,6 +48,7 @@ class BeerService():
 
 
 class ChuckService():
+    """chucknorris.io service"""
     @staticmethod
     def get_fact():
         url = "https://api.chucknorris.io/jokes/random"

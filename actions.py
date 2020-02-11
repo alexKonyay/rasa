@@ -1,5 +1,4 @@
 import requests
-import logging
 from typing import Any, Dict, List, Text
 from rasa_sdk import Action, Tracker
 from rasa_sdk.forms import FormAction
@@ -7,10 +6,12 @@ from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
 from services import ChuckService, BeerService
 
-logger = logging.getLogger(__name__)
-
 
 class ActionGreeter(Action):
+    """
+    Action that can say you 'Good afternoon!' in Russian
+    """
+
     def name(self) -> Text:
         return "action_greeter"
 
@@ -24,6 +25,10 @@ class ActionGreeter(Action):
 
 
 class ChuckFact(Action):
+    """
+    Action that returning some funny fact aboun Chuck Norris
+    """
+    
     def name(self) -> Text:
         return 'action_chuck_fact'
 
@@ -39,6 +44,9 @@ class ChuckFact(Action):
 
 
 class FormBeer(FormAction):
+    """
+    Form that take beer params and advise random Beer
+    """
     def name(self):
         return "beer_form"
 
