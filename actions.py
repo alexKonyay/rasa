@@ -5,10 +5,13 @@ from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
 from services import ChuckService, BeerService
+from deprecated import deprecated
 
 
+@deprecated
 class ActionGreeter(Action):
     """
+    Deprecated: use utter_greeting
     Action that can say you 'Good afternoon!' in Russian
     """
 

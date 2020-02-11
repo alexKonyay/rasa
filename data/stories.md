@@ -1,6 +1,6 @@
 ## Russian greeter
 * russian_greet
-  - action_greeter
+  - utter_greeting
 
 ## Chuck joke
 * chuck_fact
@@ -11,4 +11,3 @@
   - beer_form
   - form{"name": "beer_form"}
   - form{"name": null}
-  

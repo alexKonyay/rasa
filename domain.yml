@@ -52,6 +52,8 @@ responses:
       payload: Blonde
     - title: Stout
       payload: Stout
+  utter_greeting:
+  - text: Добрый день!
 actions:
 - action_greeter
 - action_chuck_fact
@@ -59,3 +61,4 @@ actions:
 - utter_ask_has_label
 - utter_ask_style
 - beer_form
+- utter_greeting
