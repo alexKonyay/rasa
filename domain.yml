@@ -12,11 +12,11 @@ intents:
     use_entities:
     - is_organic
     - has_label
-    - style_id
+    - style
 entities:
 - is_organic
 - has_label
-- style_id
+- style
 slots:
   has_label:
     type: unfeaturized
@@ -24,7 +24,7 @@ slots:
     type: unfeaturized
   requested_slot:
     type: unfeaturized
-  style_id:
+  style:
     type: unfeaturized
 responses:
   utter_ask_is_organic:
@@ -41,17 +41,21 @@ responses:
       payload: Да
     - title: Нет
       payload: Нет
-  utter_ask_style_id:
+  utter_ask_style:
   - text: Какого типа пиво вы хотите?
     buttons:
-    - title: Да
-      payload: '/beer_advice{"style_id": "true"}'
-    - title: Нет
-      payload: '/beer_advice{"style_id": "false"}'
+    - title: Amber
+      payload: Amber
+    - title: Bitter
+      payload: Bitter
+    - title: Blonde
+      payload: Blonde
+    - title: Stout
+      payload: Stout
 actions:
 - action_greeter
 - action_chuck_fact
 - utter_ask_is_organic
 - utter_ask_has_label
-- utter_ask_style_id
+- utter_ask_style
 - beer_form

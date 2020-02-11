@@ -2,6 +2,7 @@
 # https://rasa.com/docs/rasa/nlu/components/
 language: en
 pipeline: supervised_embeddings
+brew_token: enter_your_token 
 
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
