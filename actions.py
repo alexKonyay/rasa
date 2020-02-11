@@ -53,16 +53,52 @@ class ActionGreeter(Action):
 class ChuckFact(Action):
     def name(self) -> Text:
         return 'action_chuck_fact'
-    
+
     def run(self,
             dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
+
         url = "https://api.chucknorris.io/jokes/random"
         response = requests.get(url=url)
         chuck_joke = response.json()['value']
         logger.debug("The fun joke was recieved! {}".format(response.json()))
 
-        dispatcher.utter_message("Я знаю кое-то про Чака: {}".format(chuck_joke))
+        dispatcher.utter_message(
+            "Я знаю кое-то про Чака: {}".format(chuck_joke))
         return []
+
+
+class FormBeer(FormAction):
+    def name(self):
+        return "beer_form"
+
+    @staticmethod
+    def required_slots(tracker):
+        return ["is_organic", "has_label", "style_id"]
+
+    def submit(self, dispatcher, tracker, domain):
+        dispatcher.utter_message("Органическое пиво: {0}, с этикеткой: {1}, тип: {2}".format(
+            tracker.get_slot('is_organic'),
+            tracker.get_slot('has_label'),
+            tracker.get_slot('style_id')))
+        return []
+    
+    def slot_mappings(self):
+        return {
+            "is_organic": [
+                self.from_entity("is_organic"),
+                # self.from_intent(intent="affirm", value=True),
+                # self.from_intent(intent="deny", value=False)
+                ],
+            "has_label": [
+                self.from_entity("has_label"),
+                self.from_intent(intent="affirm", value=True),
+                self.from_intent(intent="deny", value=False)
+            ],
+            "style_id": [
+                self.from_entity("style_id"),
+                self.from_intent(intent="affirm", value=True),
+                self.from_intent(intent="deny", value=False)
+            ]
+        }

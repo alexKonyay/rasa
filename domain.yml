@@ -8,6 +8,50 @@ intents:
 - inform
 - deny
 - stop
+- beer_advice:
+    use_entities:
+    - is_organic
+    - has_label
+    - style_id
+entities:
+- is_organic
+- has_label
+- style_id
+slots:
+  has_label:
+    type: unfeaturized
+  is_organic:
+    type: unfeaturized
+  requested_slot:
+    type: unfeaturized
+  style_id:
+    type: unfeaturized
+responses:
+  utter_ask_is_organic:
+  - text: Какое пиво вы хотите?
+    buttons:
+    - title: Органическое
+      payload: Органическое
+    - title: Неорганическое
+      payload: Неорганическое
+  utter_ask_has_label:
+  - text: У пива должна быть этикетка?
+    buttons:
+    - title: Да
+      payload: Да
+    - title: Нет
+      payload: Нет
+  utter_ask_style_id:
+  - text: Какого типа пиво вы хотите?
+    buttons:
+    - title: Да
+      payload: '/beer_advice{"style_id": "true"}'
+    - title: Нет
+      payload: '/beer_advice{"style_id": "false"}'
 actions:
 - action_greeter
 - action_chuck_fact
+- utter_ask_is_organic
+- utter_ask_has_label
+- utter_ask_style_id
+- beer_form
