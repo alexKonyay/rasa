@@ -28,7 +28,7 @@ class ChuckFact(Action):
     """
     Action that returning some funny fact aboun Chuck Norris
     """
-    
+
     def name(self) -> Text:
         return 'action_chuck_fact'
 
@@ -47,28 +47,32 @@ class FormBeer(FormAction):
     """
     Form that take beer params and advise random Beer
     """
-    def name(self):
+
+    def name(self) -> Text:
         return "beer_form"
 
     @staticmethod
-    def required_slots(tracker):
+    def required_slots(tracker: Tracker) -> List[Text]:
         return ["is_organic", "has_label", "style"]
 
-    def submit(self, dispatcher, tracker, domain):
+    def submit(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List:
         dispatcher.utter_message("Органическое пиво: {0}, с этикеткой: {1}, тип: {2}".format(
             tracker.get_slot('is_organic'),
             tracker.get_slot('has_label'),
             tracker.get_slot('style')))
+
         dispatcher.utter_message("Я нашел кое что для тебя!")
         recomended_beer = BeerService.get_random_beer(
             tracker.get_slot('is_organic'),
             tracker.get_slot('has_label'),
             tracker.get_slot('style'))
+
         dispatcher.utter_message("Название: {0}\nОписание: {1}".format(
             recomended_beer.name, recomended_beer.desc))
+
         return []
 
-    def slot_mappings(self):
+    def slot_mappings(self) -> List[Dict[Text, Any]]:
         return {
             "is_organic": [
                 self.from_entity("is_organic")
